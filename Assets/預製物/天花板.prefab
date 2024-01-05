@@ -55,5 +55,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5536489915663587881, guid: ade5aa4beda237349bbaeafdef935605, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3293689849086560553}
+    - targetCorrespondingSourceObject: {fileID: 1692282518985428835, guid: ade5aa4beda237349bbaeafdef935605, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7384364978671081246}
   m_SourcePrefab: {fileID: 100100000, guid: ade5aa4beda237349bbaeafdef935605, type: 3}
+--- !u!1 &2844522677036489834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5536489915663587881, guid: ade5aa4beda237349bbaeafdef935605, type: 3}
+  m_PrefabInstance: {fileID: 7758671311817442883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3293689849086560553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844522677036489834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9499999, y: 0.95000905, z: 0}
+  m_Center: {x: 0.00000029802322, y: 0.0035551498, z: 0}
+--- !u!1 &8993802321051666720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1692282518985428835, guid: ade5aa4beda237349bbaeafdef935605, type: 3}
+  m_PrefabInstance: {fileID: 7758671311817442883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7384364978671081246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8993802321051666720}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.9499996, y: 2.950009, z: 0}
+  m_Center: {x: 1.0000001, y: 1.0035558, z: 0.00000047683716}
