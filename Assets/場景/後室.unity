@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.6981132, g: 0.55472517, b: 0.114595905, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
@@ -12753,6 +12753,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e6286b283f815904c86ff606167cb478, type: 3}
   m_PrefabInstance: {fileID: 956176182}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &959882332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 959882334}
+  - component: {fileID: 959882333}
+  m_Layer: 0
+  m_Name: "\u89F8\u767C\u5340\u57DF"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &959882333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959882332}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &959882334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959882332}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.509, y: 0.774, z: 12.111}
+  m_LocalScale: {x: 3.988889, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &960851636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25136,7 +25189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2100044984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26049,3 +26102,4 @@ SceneRoots:
   - {fileID: 1001365605}
   - {fileID: 1922562793}
   - {fileID: 2100044985}
+  - {fileID: 959882334}
