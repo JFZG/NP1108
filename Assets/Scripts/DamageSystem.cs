@@ -12,7 +12,7 @@ namespace JJF
 
         private float hpMax;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             //血量最大值 = 遊戲開始的血量
             hpMax = hp;
@@ -22,7 +22,7 @@ namespace JJF
         ///受傷方法
         ///</summary>
         ///<param name="damage">造成的傷害</param>
-        public void Damage(float damage)
+        public virtual void Damage(float damage)
         {
             hp -= damage;
             //血量 = 數學.夾住(血量，0，血量最大值)
@@ -34,7 +34,7 @@ namespace JJF
         ///<summary>
         ///死亡
         ///</summary>
-        private void Dead()
+        protected virtual void Dead()
         {
             print("<color=#69f>死亡</color>");
         }
