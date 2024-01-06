@@ -1,13 +1,13 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 namespace JJF
 {
     ///<summary>
-    ///Ä²µo¨t²Î
+    ///è§¸ç™¼ç³»çµ±
     ///</summary>
     public class TriggerSystem : MonoBehaviour
     {
-        [SerializeField, Header("­nÅã¥Üªºª«¥ó")]
+        [SerializeField, Header("è¦é¡¯ç¤ºçš„ç‰©ä»¶")]
         private GameObject objectToShow;
 
 
@@ -15,7 +15,7 @@ namespace JJF
         {
             if (other.name.Contains("Player"))
             {
-                print("ª±®a¶i¤JÄ²µo°Ï°ì");
+                print("ç©å®¶é€²å…¥è§¸ç™¼å€åŸŸ");
                 objectToShow.SetActive(true);
             }
            
