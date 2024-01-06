@@ -24804,6 +24804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 8425939320687756267, guid: 18e3ba6fa35443c4a9abd033ba24353d, type: 3}
   pointGun: {fileID: 836668562}
+  textBulletCount: {fileID: 1271266903}
 --- !u!1001 &1988795996
 PrefabInstance:
   m_ObjectHideFlags: 0

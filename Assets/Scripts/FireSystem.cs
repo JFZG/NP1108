@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿using TMPro;
+using UnityEngine;
+using System.Collections;
 
 namespace JJF
 {
@@ -13,6 +14,8 @@ namespace JJF
         private GameObject prefabBullet;
         [SerializeField, Header("槍口")]
         private Transform pointGun;
+        [SerializeField, Header("子彈數量文字")]
+        private TextMeshProUGUI textBulletCount;
 
         /// <summary>
         /// 目前子彈數量
@@ -27,10 +30,19 @@ namespace JJF
         /// </summary>
         private int totalBulletCount = 21;
 
+        private bool isReloading;
+
+        private string stringBulletCount=> $"{currentBulletCount}/{totalBulletCount}";
+
+        private void Awake()
+        {
+            textBulletCount.text = stringBulletCount;
+        }
+
         private void Update()
         {
             FireBullet();
-            
+            Reload();
         }
 
         /// <summary>
@@ -38,14 +50,60 @@ namespace JJF
         /// </summary>
         private void FireBullet()
         {
+            //如果 換彈夾中 就跳出
+            if (isReloading) return;
+
             if (Input.GetKeyDown(KeyCode.Mouse0) && currentBulletCount > 0)
             {
                 Instantiate(prefabBullet, pointGun.position, pointGun.rotation);
                 currentBulletCount--;
 
-                print($"<color=#f69>目前子彈數量:{currentBulletCount} </ color >");
+                textBulletCount.text = stringBulletCount;
             }
 
         }
+
+        ///<summy>
+        ///換彈夾
+        ///</summy>
+        private void Reload()
+        {
+            //如果 按下 R 並且 尚未換彈夾
+            if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+            {
+                //如果 沒子彈 或者 目前子彈是滿的 就 跳出
+                if (totalBulletCount == 0 || currentBulletCount == magazine) return;
+
+                StartCoroutine(Reloading());
+            }
+        }
+
+        private IEnumerator Reloading()
+        {
+            //換彈夾中...
+            isReloading = true;
+            print("<color=#f69>開始換彈夾</color>");
+            //等兩秒
+            yield return new WaitForSeconds(2);
+            //換完彈夾
+            isReloading = false;
+            print("<color=#6f9>換完彈夾</color>");
+
+            //要填加的數量 = 彈夾 - 當前
+            int countToAdd = magazine - currentBulletCount;
+
+            //如果 總數 小於 要添加的數量 ， 要添加的數量 = 總數
+            if (totalBulletCount < countToAdd) countToAdd = totalBulletCount;
+
+            //當前 += 要添加的數量
+            currentBulletCount += countToAdd;
+            //總數 -= 要添加的數量
+            totalBulletCount -= countToAdd;
+
+            //更新介面
+            textBulletCount.text = stringBulletCount;
+
+        }
+
     }
 }
