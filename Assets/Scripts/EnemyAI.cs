@@ -1,29 +1,33 @@
-using UnityEngine.AI;
+ï»¿using UnityEngine.AI;
 using UnityEngine;
 using System.Collections;
 
 namespace JJF
 { 
     /// <summary>
-    /// ¼Ä¤HAI
+    /// æ•µäººAI
     /// </summary>
     public class EnemyAI : MonoBehaviour
     {
-        #region Äæ¦ì¸ê®Æ
-        [SerializeField, Header("²¾°Ê³t«×"), Range(0, 10)]
+        #region æ¬„ä½è³‡æ–™
+        [SerializeField, Header("ç§»å‹•é€Ÿåº¦"), Range(0, 10)]
         private float moveSpeed = 2.5f;
-        [SerializeField, Header("°±¤î¶ZÂ÷"), Range(0, 10)]
+        [SerializeField, Header("åœæ­¢è·é›¢"), Range(0, 10)]
         private float stopDistance = 1.5f;
-        [SerializeField, Header("³y¦¨ª±®a¶Ë®`®É¶¡"), Range(0, 3)]
+        [SerializeField, Header("é€ æˆç©å®¶å‚·å®³æ™‚é–“"), Range(0, 3)]
         private float takePlayerDamageTime = 0.8f;
-        [SerializeField, Header("§ğÀ»§N«o"), Range(0, 5)]
+        [SerializeField, Header("é—œé–‰æ”»æ“Šå€åŸŸæ™‚é–“"), Range(0, 3)]
+        private float closeAttackAreaTime = 0.5f;
+        [SerializeField, Header("æ”»æ“Šå†·å»"), Range(0, 5)]
         private float attackCD = 2.5f;
+        [SerializeField, Header("æ•µäººæ”»æ“Šå€åŸŸ")]
+        private GameObject attackArea;
 
         private NavMeshAgent agent;
         private Transform playerPoint;
         private Animator ani;
-        private string parMove = "¥[³t«×";
-        private string parAttack = "Ä²µo§ğÀ»";
+        private string parMove = "åŠ é€Ÿåº¦";
+        private string parAttack = "è§¸ç™¼æ”»æ“Š";
         private bool isAttack;
         #endregion
 
@@ -35,25 +39,25 @@ namespace JJF
             ani = GetComponent<Animator>();
 
 
-            //ª±®aÂI = ·j´M¦WºÙ¬° "ª±®a" ªºª«¥ó¨Ã¨ú±oÅÜ§Î¤¸¥ó
-            playerPoint = GameObject.Find("ª±®a").transform;
+            //ç©å®¶é» = æœå°‹åç¨±ç‚º "ç©å®¶" çš„ç‰©ä»¶ä¸¦å–å¾—è®Šå½¢å…ƒä»¶
+            playerPoint = GameObject.Find("ç©å®¶").transform;
         }
 
         private void Update()
         {
-            //¥N²z¾¹.³]©w¥Øªº¦a(ª±®aªº®y¼Ğ)
+            //ä»£ç†å™¨.è¨­å®šç›®çš„åœ°(ç©å®¶çš„åº§æ¨™)
             agent.SetDestination(playerPoint.position);
 
-            //¥N²z¾¹.¥[³t«×(¤Tºû¦V¶q).¤j¤p(¯BÂI¼Æ)
+            //ä»£ç†å™¨.åŠ é€Ÿåº¦(ä¸‰ç¶­å‘é‡).å¤§å°(æµ®é»æ•¸)
             float move = agent.velocity.magnitude;
-            //°Êµe.¥«©w¯BÂI¼Æ(¯BÂI¼Æ°Ñ¼Æ¦WºÙ¡A¯BÂI¼Æ­È)
+            //å‹•ç•«.å¸‚å®šæµ®é»æ•¸(æµ®é»æ•¸åƒæ•¸åç¨±ï¼Œæµ®é»æ•¸å€¼)
             ani.SetFloat(parMove, move / moveSpeed);
 
-            //¶ZÂ÷ = ¤Tºû¦V¶q.¶ZÂ÷(A¡AB)
+            //è·é›¢ = ä¸‰ç¶­å‘é‡.è·é›¢(Aï¼ŒB)
             float distance = Vector3.Distance(playerPoint.position, transform.position);
-            //print($"<color=#96f>¶ZÂ÷:{distance}</color>");
+            //print($"<color=#96f>è·é›¢:{distance}</color>");
 
-            //¦pªG ¶ZÂ÷ <= °±¤î¶ZÂ÷ ¨Ã¥B ©|¥¼§ğÀ»
+            //å¦‚æœ è·é›¢ <= åœæ­¢è·é›¢ ä¸¦ä¸” å°šæœªæ”»æ“Š
             if (distance <= stopDistance && !isAttack)
             {
                 StartCoroutine(Attack());
@@ -62,16 +66,18 @@ namespace JJF
 
         private IEnumerator Attack()
         {
-            //§ğÀ»°ÊµeÄ²µo
+            //æ”»æ“Šå‹•ç•«è§¸ç™¼
             ani.SetTrigger(parAttack);
-            //¤w¸g§ğÀ»
+            //å·²ç¶“æ”»æ“Š
             isAttack = true;
-            //¥N²z¾¹.°±¤î = ¬O
+            //ä»£ç†å™¨.åœæ­¢ = æ˜¯
             agent.isStopped = true;
-            //µ¥«İ0.8¬í³y¦¨ª±®a¶Ë®`
+            //ç­‰å¾…0.8ç§’é€ æˆç©å®¶å‚·å®³
             yield return new WaitForSeconds(takePlayerDamageTime);
-            print("<color=#f99>³y¦¨ª±®a¶Ë®`</color>");
-            //µ¥«İ2.5¬í§N«o«ì´_¥i§ğÀ»
+            //é¡¯ç¤ºæ”»æ“Šå€åŸŸ
+            attackArea.SetActive(true);
+            yield return new WaitForSeconds(closeAttackAreaTime);
+            //ç­‰å¾…2.5ç§’å†·å»æ¢å¾©å¯æ”»æ“Š
             yield return new WaitForSeconds(attackCD);
             isAttack = false;
             agent.isStopped = false;
