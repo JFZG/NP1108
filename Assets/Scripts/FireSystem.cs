@@ -16,6 +16,11 @@ namespace JJF
         private Transform pointGun;
         [SerializeField, Header("子彈數量文字")]
         private TextMeshProUGUI textBulletCount;
+        [Header("音效")]
+        [SerializeField]
+        private AudioClip soundFire, soundReload, soundNoBullet;
+
+        private AudioSource aud;
 
         /// <summary>
         /// 目前子彈數量
@@ -33,9 +38,11 @@ namespace JJF
         private bool isReloading;
 
         private string stringBulletCount=> $"{currentBulletCount}/{totalBulletCount}";
+        private float randomVolume => Random.Range(0.8f, 1.5f);
 
         private void Awake()
         {
+            aud = GetComponent<AudioSource>();
             textBulletCount.text = stringBulletCount;
         }
 
@@ -59,8 +66,12 @@ namespace JJF
                 currentBulletCount--;
 
                 textBulletCount.text = stringBulletCount;
+                aud.PlayOneShot(soundFire, randomVolume);
             }
-
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && currentBulletCount == 0)
+            {
+                aud.PlayOneShot(soundNoBullet, randomVolume);
+            }
         }
 
         ///<summy>
@@ -81,6 +92,7 @@ namespace JJF
         private IEnumerator Reloading()
         {
             //換彈夾中...
+            aud.PlayOneShot(soundReload, 1.2f);
             isReloading = true;
             print("<color=#f69>開始換彈夾</color>");
             //等兩秒
