@@ -22,6 +22,9 @@ namespace JJF
         private float attackCD = 2.5f;
         [SerializeField, Header("敵人攻擊區域")]
         private GameObject attackArea;
+        [SerializeField, Header("攻擊"), Range(0, 100)]
+        private float attack = 35;
+
 
         private NavMeshAgent agent;
         private Transform playerPoint;
@@ -37,7 +40,7 @@ namespace JJF
             agent.speed = moveSpeed;
             agent.stoppingDistance = stopDistance;
             ani = GetComponent<Animator>();
-
+            attackArea.GetComponent<EnemyAttackObject>().attack = attack;
 
             //玩家點 = 搜尋名稱為 "玩家" 的物件並取得變形元件
             playerPoint = GameObject.Find("玩家").transform;

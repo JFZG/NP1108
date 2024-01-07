@@ -8,7 +8,7 @@ namespace JJF
     /// 開槍系統
     /// </summary>
 
-    public class FlySystem : MonoBehaviour
+    public class FireSystem : MonoBehaviour
     {
         [SerializeField, Header("子彈預置物")]
         private GameObject prefabBullet;

@@ -8,9 +8,9 @@ namespace JJF
     public class DamageSystem : MonoBehaviour
     {
         [SerializeField, Header("血量"), Range(0, 100)]
-        private float hp = 100;
+        protected float hp = 100;
 
-        private float hpMax;
+        protected float hpMax;
 
         protected virtual void Awake()
         {
