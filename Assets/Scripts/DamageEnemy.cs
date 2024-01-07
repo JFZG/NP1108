@@ -6,6 +6,7 @@ namespace JJF
     /// <summary>
     /// 敵人受傷
     /// </summary>
+    [DefaultExecutionOrder(100)]
     public class DamageEnemy : DamageSystem
     {
         [SerializeField, Header("受傷特效")]
@@ -30,6 +31,17 @@ namespace JJF
         {
             base.Awake();
             aud = GetComponent<AudioSource>();
+
+            //訂閱玩家走到出口的事件 並執行 玩家走到出口方法
+            ExitManager.instance.onExit += PlayerExit;
+        }
+
+        /// <summary>
+        /// 玩家進入出口
+        /// </summary>
+        private void PlayerExit()
+        {
+            Damage(9999);
         }
 
         //當物件碰撞開始會執行一次的事件
