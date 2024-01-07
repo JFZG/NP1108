@@ -22,6 +22,8 @@ namespace JJF
 
         private AudioSource aud;
 
+        public static FireSystem instance;
+
         /// <summary>
         /// 目前子彈數量
         /// </summary>
@@ -42,6 +44,7 @@ namespace JJF
 
         private void Awake()
         {
+            instance = this;
             aud = GetComponent<AudioSource>();
             textBulletCount.text = stringBulletCount;
         }
@@ -117,5 +120,14 @@ namespace JJF
 
         }
 
+        ///<summary>
+        ///添加子彈
+        ///</summary>
+        ///<param name="bulletCount">要添加的數量</param>
+        public void AddBullet(int bulletCount)
+        {
+            totalBulletCount += bulletCount;
+            textBulletCount.text = stringBulletCount;
+        }
     }
 }
